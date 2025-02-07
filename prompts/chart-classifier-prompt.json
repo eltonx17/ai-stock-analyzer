@@ -1,0 +1,17 @@
+[
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": "Very briefly, technically analyze if this stock appears to show bullish indications on a Daily timeframe. In a JSON format, answer for a potential and most logical trade setup for the day with the latest CURRENT \"entry\", \"exit\", and \"stoploss\" for the trade, where exit should be higher than the current price. Also, mention what the key levels are and patterns observed to confirm a bullish trade setup. If any BEARISH indications exist, return an empty JSON. Use the following JSON template for output: \n\n{\n  \"technical_analysis\": {\n    \"bullish_indications\": [],\n    \"key_levels\": {\n      \"support\": [],\n      \"resistance\": []\n    },\n    \"patterns_observed\": [],\n    \"trade_setup\": {\n      \"entry\": null,\n      \"exit\": null,\n      \"stoploss\": null\n    }\n  }\n}"
+            },
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": ""
+                }
+            }
+        ]
+    }
+]
