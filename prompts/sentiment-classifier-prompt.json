@@ -1,0 +1,15 @@
+[
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": "Very briefly, analyze the provided news article headlines and classify the sentiment of the news article as either positive, negative, or neutral. Finally, in a JSON format, return ONE OVERALL sentiment classification of all the news article using the following JSON template for output: \n\n{\n  \"overallSentiment\": \"positive\"\n, \"positive\" : \"5\", \"negative\" : \"2\"\"neutral\" : \"6\" }. Provide count of positive, negative, and neutral news articles in the same single json."
+            },
+            {
+                "type": "text",
+                "text": ""
+            }
+        ]
+    }
+]
