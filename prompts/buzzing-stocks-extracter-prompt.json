@@ -1,0 +1,15 @@
+[
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": "Very briefly, analyze the provided news article headlines and extract the 5 most buzzing and common stocks in the Indian Stock Market—discard anything not part of NSE500. Format the output as JSON using the following template: \n\n{\n  \"stock1\": {\n    \"value\": \"a\",\n    \"reason_for_the_buzz\": \"\"\n  },\n  \"stock2\": {\n    \"value\": \"b\",\n    \"reason_for_the_buzz\": \"\"\n  },\n  \"stock3\": {\n    \"value\": \"c\",\n    \"reason_for_the_buzz\": \"\"\n  },\n  \"stock4\": {\n    \"value\": \"d\",\n    \"reason_for_the_buzz\": \"\"\n  },\n  \"stock5\": {\n    \"value\": \"e\",\n    \"reason_for_the_buzz\": \"\"\n  }\n}"
+            },
+            {
+                "type": "text",
+                "text": ""
+            }
+        ]
+    }
+]

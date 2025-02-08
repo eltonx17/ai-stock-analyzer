@@ -19,6 +19,8 @@ class LLMAnalyzer:
             print("LLM Analyzer Error: No response from the API.")
             print(completion)  # Debugging
         else:
-            print(completion.choices[0].message.content)
+            output = completion.choices[0].message.content
+            print(output)
+            return output
 
 #model="google/gemini-2.0-pro-exp-02-05:free",
