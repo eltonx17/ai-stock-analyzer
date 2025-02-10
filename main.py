@@ -36,7 +36,7 @@ def fetch_buzzing_stocks():
     sanitized_json = sanitize_json(buzzing_stocks_json)
     
     buzzing_stocks_dict = json.loads(sanitized_json)
-    stock_values = [stock_info['value'] for stock_info in buzzing_stocks_dict.values()]
+    stock_values = [(stock_info['value'], stock_info['nse_ticker']) for stock_info in buzzing_stocks_dict.values()]
     
     print(stock_values)
     return stock_values
@@ -68,6 +68,9 @@ def open_tradingview_charts(stocks):
         url = f"{base_url}{stock}"
         webbrowser.open(url)
         time.sleep(5)  # wait for the page to load
+        pyautogui.typewrite('1D')
+        pyautogui.press('enter')
+        time.sleep(2)
         pyautogui.hotkey('alt', 'r')
         time.sleep(1)
         pyautogui.hotkey('ctrl', 'alt', 's')
@@ -84,19 +87,25 @@ def extract_positive_stocks(sorted_stock_sentiments):
     positive_stocks = []
     for stock_sentiment in sorted_stock_sentiments:
         if stock_sentiment["overall_sentiment"] == "positive":
-            stock_name = stock_sentiment["stock"]
-            ticker = TICKER_MAPPINGS.get(stock_name)
+            ticker = stock_sentiment["ticker"]
             if ticker:
                 positive_stocks.append(ticker)
     return positive_stocks
 
+def clear_resources_folder(folder_path):
+    for file_name in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file_name)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+            print(f"Deleted {file_path}")
+
 if __name__ == "__main__":
     buzzing_stocks = fetch_buzzing_stocks()
     stock_sentiments = []
-    for stock in buzzing_stocks:
+    for stock, ticker in buzzing_stocks:
         print(stock)
         sentiment = fetch_news(stock)
-        stock_sentiments.append({"stock": stock, **sentiment})
+        stock_sentiments.append({"stock": stock, "ticker": ticker, **sentiment})
     
     sorted_stock_sentiments = sort_stock_sentiments(stock_sentiments)
     print(sorted_stock_sentiments)
@@ -104,7 +113,8 @@ if __name__ == "__main__":
     positive_stocks = extract_positive_stocks(sorted_stock_sentiments)
     print("Positive stocks with tickers:", positive_stocks)
     
-    #stocks_to_view = ['BHARTIARTL', 'HEROMOTOCO', 'SBIN']
+    clear_resources_folder(resources_folder)
+    
     open_tradingview_charts(positive_stocks)
     
     process_images_in_folder(resources_folder, cloud_name, cloudinary_api_key, cloudinary_api_secret)
