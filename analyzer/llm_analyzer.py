@@ -12,7 +12,7 @@ class LLMAnalyzer:
         completion = self.client.chat.completions.create(
             extra_headers={},
             extra_body={},
-            model="google/gemini-2.0-flash-exp:free",
+            model="google/gemini-2.0-flash-thinking-exp:free",
             messages=prompt
         )
         if not completion or not completion.choices:

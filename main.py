@@ -36,7 +36,7 @@ def fetch_buzzing_stocks():
     sanitized_json = sanitize_json(buzzing_stocks_json)
     
     buzzing_stocks_dict = json.loads(sanitized_json)
-    stock_values = [(stock_info['value'], stock_info['nse_ticker']) for stock_info in buzzing_stocks_dict.values()]
+    stock_values = [(stock_info['stock_name'], stock_info['nse_ticker']) for stock_info in buzzing_stocks_dict.values()]
     
     print(stock_values)
     return stock_values
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     stock_sentiments = []
     for stock, ticker in buzzing_stocks:
         print(stock)
-        sentiment = fetch_news(stock)
+        sentiment = fetch_news(stock + " stock")
         stock_sentiments.append({"stock": stock, "ticker": ticker, **sentiment})
     
     sorted_stock_sentiments = sort_stock_sentiments(stock_sentiments)
